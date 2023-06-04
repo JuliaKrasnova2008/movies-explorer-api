@@ -9,6 +9,13 @@ const Conflict = require('../errors/conflict');
 const NotFound = require('../errors/notFound');
 const Unauthorized = require('../errors/unauthorized');
 const BadRequest = require('../errors/badRequest');
+const {
+  usersConflictText,
+  BadRequestText,
+  usersUnauthorizedText,
+  usersWrongLoginOrPasswordText,
+  usersIdNotFoundText
+} = require('../errors/errorText');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -27,9 +34,9 @@ module.exports.addUser = (req, res, next) => {
       }))
       .catch((error) => {
         if (error.code === 11000) {
-          next(new Conflict('Такой пользователь уже существует'));
+          next(new Conflict(usersConflictText));
         } else if (error.name === 'ValidationError') {
-          next(new BadRequest('Некорректные данные'));
+          next(new BadRequest(BadRequestText));
         } else {
           next(error);
         }
@@ -44,12 +51,12 @@ module.exports.login = (req, res, next) => {
   userSchema.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        throw new Unauthorized('Пользователь не найден');
+        throw new Unauthorized(usersUnauthorizedText);
       }
       return bcrypt.compare(password, user.password)
         .then((match) => {
           if (!match) {
-            return next(new Unauthorized('Не правильно указан логин или пароль'));
+            return next(new Unauthorized(usersWrongLoginOrPasswordText));
           }
 
           const token = jwt.sign(
@@ -70,7 +77,7 @@ module.exports.getUserById = (req, res, next) => {
     .findById(req.params.userId)
     .then((user) => {
       if (!user) {
-        throw new NotFound('Пользователь по данному _id не найден');
+        throw new NotFound(usersIdNotFoundText);
       }
       return res.send(user);
     })
@@ -85,14 +92,14 @@ module.exports.editProfile = (req, res, next) => {
   userSchema.findByIdAndUpdate(_id, { name, email }, { new: true, runValidators: true })
     .then((user) => {
       if (!user) {
-        throw new NotFound('Пользователь по данному _id не найден');
+        throw new NotFound(usersIdNotFoundText);
       }
       return res.send(user);
     })
     .catch((error) => {
       if (error.name === 'ValidationError' || error.name === 'CastError') {
         next(
-          new BadRequest('Переданы некорректные данные при обновлении профиля.')
+          new BadRequest(BadRequestText)
         );
       } else next(error);
     });

@@ -9,7 +9,7 @@ module.exports.getMovie = (req, res, next) => {
     .find({ owner: req.user._id })
     .then((movie) => {
       if (!movie) {
-        throw new NotFoundError('Фильмы не найдены.');
+        throw new NotFound('Фильмы не найдены.');
       }
       return res.send(movie);
     })
@@ -57,6 +57,3 @@ module.exports.deleteMovie = (req, res, next) => {
       }
     });
 };
-
-
-

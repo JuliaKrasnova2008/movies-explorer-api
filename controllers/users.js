@@ -66,7 +66,6 @@ module.exports.login = (req, res, next) => {
 
 // ищем по ID
 module.exports.getUserById = (req, res, next) => {
-
   userSchema
     .findById(req.params.userId)
     .then((user) => {
@@ -98,4 +97,3 @@ module.exports.editProfile = (req, res, next) => {
       } else next(error);
     });
 };
-

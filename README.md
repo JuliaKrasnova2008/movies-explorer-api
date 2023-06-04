@@ -3,8 +3,7 @@
 ## IP 158.160.30.37
 
 <div id="header" align="left">
-  <img src="https://img.freepik.com/premium-vector/back-end-typographic-header-concept_277904-6387.jpg?w=2000
-" width="80"/>
+  <img src="https://img.freepik.com/premium-vector/back-end-typographic-header-concept_277904-6387.jpg?w=2000" width="80"/>
 </div>
 https://api.krasnova.nomoredomains.rocks
 

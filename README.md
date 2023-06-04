@@ -2,7 +2,7 @@
 
 ## IP 158.160.30.37
 
-![Backend](https://img.shields.io/badge/-Express-090909?style=for-the-badge&logo=Express)
+![Backend](https://img.shields.io/badge/-Express-090909?style=for-the-badge&logo=Backend)
 (https://api.krasnova.nomoredomains.rocks)
 
 <div id="header" align="left">

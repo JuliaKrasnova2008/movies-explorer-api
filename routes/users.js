@@ -3,9 +3,9 @@ const {
   getUserById,
   editProfile,
 } = require('../controllers/users');
-const { getUserValid, editUserValid } = require('../middlewares/validation');
+const { editUserValid } = require('../middlewares/validation');
 
-usersRouter.get('/me', getUserValid, getUserById);
+usersRouter.get('/me', getUserById);
 usersRouter.patch('/me', editUserValid, editProfile);
 
 module.exports = usersRouter;

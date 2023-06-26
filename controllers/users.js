@@ -72,17 +72,17 @@ module.exports.login = (req, res, next) => {
 };
 
 // ищем по ID
-module.exports.getUserById = (req, res, next) => {
-  userSchema
-    .findById(req.params.userId)
-    .then((user) => {
-      if (!user) {
-        throw new NotFound(usersIdNotFoundText);
-      }
-      return res.send(user);
-    })
-    .catch(next);
-};
+// module.exports.getUserById = (req, res, next) => {
+//   userSchema
+//     .findById(req.params.userId)
+//     .then((user) => {
+//       if (!user) {
+//         throw new NotFound(usersIdNotFoundText);
+//       }
+//       return res.send(user);
+//     })
+//     .catch(next);
+// };
 
 // редактировать профиль
 module.exports.editProfile = (req, res, next) => {
@@ -103,4 +103,19 @@ module.exports.editProfile = (req, res, next) => {
         );
       } else next(error);
     });
+};
+
+// получаем текущего пользователя
+module.exports.getUserById = (req, res, next) => {
+  // const { _id } = req.user;
+
+  userSchema
+    .findById(req.user._id)
+    .then((user) => {
+      if (!user) {
+        throw new NotFound('Пользователь по данному _id не найден');
+      }
+      return res.send(user);
+    })
+    .catch(next);
 };

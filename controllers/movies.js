@@ -41,7 +41,7 @@ module.exports.addMovie = (req, res, next) => {
 module.exports.deleteMovie = (req, res, next) => {
   const { movieId: id } = req.params;
 
-  movieSchema.findById({ movieId: id })
+  movieSchema.findOne({ movieId: id })
     .then((movie) => {
       if (!movie) {
         throw new NotFound(movieIdNotFoundText);

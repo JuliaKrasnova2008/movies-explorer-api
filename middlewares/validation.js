@@ -44,11 +44,11 @@ const moviesIdValid = celebrate({
 });
 
 // users
-const getUserValid = celebrate({
-  params: Joi.object().keys({
-    userId: Joi.string().length(24).hex().required(),
-  }),
-});
+// const getUserValid = celebrate({
+//   params: Joi.object().keys({
+//     userId: Joi.string().length(24).hex().required(),
+//   }),
+// });
 
 const editUserValid = celebrate({
   body: Joi.object().keys({
@@ -64,6 +64,5 @@ module.exports = {
   singinValid,
   addMovieValid,
   moviesIdValid,
-  getUserValid,
   editUserValid
 };

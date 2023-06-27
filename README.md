@@ -9,6 +9,7 @@
 
 <div id="header" align="left">
   <img src="https://img.freepik.com/premium-vector/frontend-typographic-header-concept-website-interface-design-improvement-programming-and-coding-it-profession-isolated-flat-vector-illustration_277904-7101.jpg?w=2000" width="100"/>
+  - https://krasnova.nomoredomains.rocks
 </div>
 
 [Ссылка на макет Figma](<https://disk.yandex.ru/d/UuZN0UKyf8nc1g>)
